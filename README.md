@@ -1,0 +1,2 @@
+# mensajeVisual
+red social inclusiva
