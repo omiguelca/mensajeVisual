@@ -1,0 +1,48 @@
+extends ../templates/default
+block estilo
+      link(rel='stylesheet', href='/stylesheets/chat.css')
+block content  
+  div(class='row main')  
+    div(id="leftnav" class="nav-side-menu col-md-2 no-float")
+        div( class="menu-list")  
+          ul(id="menu-content" class="menu-content collapse out")
+          li(data-toggle="collapse" data-target="#Grupos" class="collapsed active")
+            a(href="#")='Grupos'
+            span(style="float:right")
+              a(href="#")='+'
+          if grupos.length >0
+            each grupo, i in grupos
+              li(data-toggle="collapse" data-target='##{grupo.nombre}' class="collapsed active")
+                a(href="#") #{grupo.nombre}
+                span(style="float:right")
+                  a(href="#")='-'
+                span(class="badge" style="float:right")='12'
+                ul(class="sub-menu collapse" id='#{grupo.nombre}')            
+            li(data-toggle="collapse" data-target="#Amigos" class="collapsed active")
+              a(href="#")='Amigos'
+              span(style="float:right")
+                a(href="#")='-'
+              ul(class="sub-menu collapse" id="Amigos")
+                  li(class="active")
+                    a(href="#")='Tia'
+                  li
+                    a(href="#")='Hermano'
+                  li
+                    a(href="#")='Primo'
+                  li
+                    a(href="#")='Otros' 
+            li
+              input(type="text" style="color:#000;height:2em;font-weight: 600;" maxlength="20")
+    div(class='col-md-10 chat') 
+      div(class='col-md-12 chat-header')  
+        span(class="avatar glyphicon glyphicon-user")
+      div(class='col-md-12 chat-body')  
+        div(class='col-md-10 col-md-offset-1 chat-mensaje')='Hola... ' + user.nombre
+      div(class='col-md-12 chat-footer')
+        span(class="chat-input")
+          span(class="source glyphicon glyphicon-picture")
+          span(class="like glyphicon glyphicon-thumbs-up")
+          span(class="dislike glyphicon glyphicon-thumbs-down")
+          input(type="text" placeholder='Escribe un mensaje...' name="mensaje" id="mensaje" size="30")
+          button(type="button" class="btn btn-success btn-circle")
+           i(class="glyphicon glyphicon-send")

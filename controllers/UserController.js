@@ -2,6 +2,7 @@ var bcrypt = require('bcryptjs')
 var mongoose = require('mongoose');
 const mUsers = require("../models/users").mUsers;
 const mUsrGrupo = require("../models/usr_grupo").mUsrGrupo;
+const mUsrPerfil = require("../models/perfil").mPerfil;
 
 module.exports={
     getSignUp : function(req,res,next){
@@ -27,18 +28,22 @@ module.exports={
 
             dificultar : cuales procesos hermanos si se realizaron antes de fallar
             */
+            /*grupos por default */
             var daoUsrGrupo= new mUsrGrupo({nombre:'Trabajo',usuario:daoUsers._id});
             daoUsrGrupo.save();
             daoUsrGrupo= new mUsrGrupo({nombre:'Escuela',usuario:daoUsers._id});
             daoUsrGrupo.save();
             daoUsrGrupo= new mUsrGrupo({nombre:'Familia',usuario:daoUsers._id});
             daoUsrGrupo.save();
-            /*msg="se guardo el numero:"+req.body.numero+" como Candidato Primo";                             
-            res.send(msg);   */
-            //console.log(daoUsers);
-            console.log(req.body);
+            /*perfil uno a uno de usuario con valores por default*/
+            var daoUsrPerfil= new mUsrPerfil({
+                usuario:daoUsers._id,
+                fondo:'default',
+                avatar:'default',
+                privacidad:false
+            });
         });
-
+        //mensaje enviado a la pagina de registro
         req.flash('info','Se ha registrado correctamente, ya puede iniciar sesion')
         return res.redirect('/auth/signin');
     },
@@ -59,7 +64,7 @@ module.exports={
                 mUsrGrupo.find({usuario:mongoose.Types.ObjectId(doc._id)},function (err,doc){
                     if(err) throw err;            
                     if(doc!=null){    
-                        res.render('users/panel',{
+                        res.render('chat/panel',{
                             isAuthenticated:req.isAuthenticated(),
                             user:req.user,
                             grupos:doc

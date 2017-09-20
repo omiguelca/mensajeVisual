@@ -3,8 +3,8 @@ mongoose.connect("mongodb://localhost/login");
 
 var usr_grupoSchemaJSON=new mongoose.Schema({
     nombre:String ,
-    usuario:{type:mongoose.Schema.ObjectId,ref:"users"} ,
-    usr_grupo:{type:mongoose.Schema.ObjectId,ref:"usr_grupo"} ,
+    usuario:{type:mongoose.Schema.ObjectId,ref:"users"} ,//relacion usuario 1:M contactos
+    usr_grupo:{type:mongoose.Schema.ObjectId,ref:"usr_grupo"} ,//relacion  grupo 1:M contactos
     status:Number,
     falta:Date
 });
