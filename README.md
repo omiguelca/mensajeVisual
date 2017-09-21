@@ -4,7 +4,7 @@ Chat: Mensaje Visual
 
 Instrucciones:
 instalar npm
-instalar mongodb
+instalar mongodb 
 >npm install
 >mongod
 >npm start
