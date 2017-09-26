@@ -1,9 +1,20 @@
+var mongoose = require('mongoose');
 //modulo interno
-const Contacto = require('../models/contactos');
+const Contacto = require('../models/contactos').mContacto;
+const mUsrGrupo = require("../models/usr_grupo").mUsrGrupo;
 //funciones
 module.exports={
     getContactoView:function(req,res,next){
-        res.render('contactos/agregar');        
+        mUsrGrupo.find({usuario:mongoose.Types.ObjectId(req.user.usuario)},function (err,doc){
+            if(err) throw err;            
+            if(doc!=null){ 
+                res.render('contactos/agregar',{  
+                    isAuthenticated:req.isAuthenticated(),
+                    user:req.user,                  
+                    grupos:doc
+                });
+            }   
+        });   
     },
     getContactos:function(req,res,next){       
         Contacto.find({},(err,doc)=>{
@@ -28,11 +39,11 @@ module.exports={
     },
     saveContacto:function(req,res,next){
         let contacto = new Contacto();
-        contacto.nombre = req.body.nombre;
-        contacto.usuario = req.body.usuario;
+        contacto.email = req.body.email;//falta comprobas si existe el email y tomar de ahi el nombre
+        contacto.usuario = req.user.usuario;
         contacto.usr_grupo = req.body.usr_grupo;
-        contacto.status = req.body.status;
-        contacto.falta = req.body.falta;
+        contacto.status = 0;
+        contacto.falta = new Date();
       
         contacto.save((err,doc)=>{
           if(err){

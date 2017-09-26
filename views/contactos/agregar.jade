@@ -3,22 +3,19 @@ block content
   div(class='row')
     div(class='col-md-6 col-md-offset-3')
       div(class='panel panel-default')
-        div(class='panel-heaing')='Agregar contacto'
+        div(class='panel-heaing')
+          h3='Agregar contacto'
         div(class='panel-body')
           form(action='#' method='post' autocomplete='off')
             div(class='form-group')
-              label(for='email')='Email'
+              label(for='email')='Email del contacto'
               input(type='email' name='email' id='email' placeholder='email' class='form-control')
-              label(for='grupo')='Grupo'
-              input(type='text' name='grupo' id='grupo' class='form-control')
-              div(class="dropdown")
-                button(class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown")='Dropdown Example'
-                  span(class="caret")
-                ul(class="dropdown-menu")
-                  li
-                    a(href="#")='HTML'
-                  li
-                    a(href="#")='CSS'
-                  li
-                    a(href="#")='JavaScript'
+            div(class='form-group')
+              label(for='usr_grupo')='Grupo de clasificación del contacto'
+              br
+              select(name='usr_grupo' id='usr_grupo')
+                if grupos.length >0
+                  each grupo, i in grupos
+                    option(value="#{grupo._id}") !{grupo.nombre} 
+            div(class='form-group')
               input(type="submit" class='btn btn-default' value='Agregar')

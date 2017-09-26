@@ -2,31 +2,35 @@
 Red Social Inclusiva
 Chat: Mensaje Visual
 
-Instrucciones:
+##Instrucciones:
+instalar nodeJs
 instalar npm
 instalar mongodb 
+###Instalar las dependencias
 >npm install
+###Ejecutar mongod
 >mongod
+###Ejecutar la aplicación
 >npm start
 
 
-Objetivos iniciales:
+##Objetivos iniciales:
  -Ayudar a personas sordas (que se les dificult la lectura) a interactuar mediante imagenes y videos en un chat
 
-Alcance secundario:
+##Alcance secundario:
  -Incentivar a la comunidad a registrar recursos (imagenes y video) alusivo a comunicacion verbal almacenados para uso colectivo
 
-Objetivo desarrollo:
+##Objetivo desarrollo:
     -Un chat visual: chat que permita enviar mensajes con opcion a reconocer las palabras con imagenes o video
 
-Propuesta:
+##Propuesta:
 -crear html de preview para las pantallas
 
-Contribución:
+##Contribución:
 -login simple con passport
 -modelo de grupos para los contactos registrados
 
-Pendientes:
+##Pendientes:
 -autenticacion social
 -validacion de usuario (input)
 -pantalla principal del chat y funcionalidad

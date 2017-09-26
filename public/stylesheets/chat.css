@@ -35,8 +35,12 @@ background: #ccc;
 height: 50px;
 padding-top: 5px;
 }
+.chat-body{
+  overflow:auto;
+}
 .avatar{
   font-size: 40px;
+  width: 40px;
 }
 .source,.like,.dislike,.chat-input{
   font-size: 20px;
@@ -50,18 +54,39 @@ padding-top: 5px;
 .chat-input input[type=text]{
   border: none;
   float: left;
-  
+  background:none;
   margin-right: 10px;
   border-bottom: 2px solid red;
   width: calc(100% - 400px);
   width:-webkit-calc(100% - 400px);
   width:-moz-calc(100% - 400px);
 }
-
+.chat-input input[type=text]:focus{
+	outline:0px;
+}
 .chat-mensaje {
-  background: #CBEDF1; 
-  height: 50px;
-  vertical-align:middle;
+  height: 150px;
+}
+.globo-margen{
+  background-color: #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  height: 150px;
+  width: 200px;
+  float:left;
+}
+.globo{
+  background-color: #fff;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+.play{
+  font-size:50px;
+  
 }
 .chat-footer{
   background-color: #E7E7E7;

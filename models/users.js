@@ -4,7 +4,8 @@ mongoose.connect("mongodb://localhost/login");
 var usersSchemaJSON=new mongoose.Schema({
     email:String ,
     nombre:String ,
-    password:String 
+    password:String,
+    status:Boolean //sin confirmar,confirmado correo
 });
 usersSchemaJSON.index({email: 1}, {unique: true});
 /*

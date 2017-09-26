@@ -1,6 +1,8 @@
 extends ../templates/default
 block estilo
       link(rel='stylesheet', href='/stylesheets/chat.css')
+block libreria
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js")
 block content  
   div(class='row main')  
     div(id="leftnav" class="nav-side-menu col-md-2 no-float")
@@ -14,30 +16,28 @@ block content
             each grupo, i in grupos
               li(data-toggle="collapse" data-target='##{grupo.nombre}' class="collapsed active")
                 a(href="#") #{grupo.nombre}
-                span(style="float:right")
-                  a(href="#")='-'
-                span(class="badge" style="float:right")='12'
-                ul(class="sub-menu collapse" id='#{grupo.nombre}')            
-            li(data-toggle="collapse" data-target="#Amigos" class="collapsed active")
-              a(href="#")='Amigos'
-              span(style="float:right")
-                a(href="#")='-'
-              ul(class="sub-menu collapse" id="Amigos")
-                  li(class="active")
-                    a(href="#")='Tia'
-                  li
-                    a(href="#")='Hermano'
-                  li
-                    a(href="#")='Primo'
-                  li
-                    a(href="#")='Otros' 
+                span(class="badge" style="float:right") #{grupo.contactos.length}
+                ul(class="sub-menu collapse" id='#{grupo.nombre}')  
+                  if grupo.contactos!=null && grupo.contactos.length >0
+                    each contacto, j in grupo.contactos 
+                      li(class="active")
+                        a(href="#") #{contacto.email}                
             li
               input(type="text" style="color:#000;height:2em;font-weight: 600;" maxlength="20")
     div(class='col-md-10 chat') 
-      div(class='col-md-12 chat-header')  
-        span(class="avatar glyphicon glyphicon-user")
-      div(class='col-md-12 chat-body')  
-        div(class='col-md-10 col-md-offset-1 chat-mensaje')='Hola... ' + user.nombre
+      header(class='col-md-12 chat-header')
+        div(class="avatar glyphicon glyphicon-user" style="float:left")
+        div(style="width:80%;height:40px;float:left;margin-left: 10px;")
+          div(style="width:100%;height:25px;font-size:1.2em") !{user.nombre}
+          div(style="width:100%;height:10px;font-size:.8em;color:rgba(0,0,0,0.5)")='Ultimo mensage 17:24'
+        div(class="glyphicon glyphicon-cog" style="vertical-align:middle;text-align: center;width:40px;height:40px;float:right;font-size: 25px;color:rgba(0,0,0,0.5)")        
+      div(class='col-md-12 chat-body') 
+        div(class='col-md-12 chat-mensaje')
+          div(class="globo-margen")
+            div(class="globo")
+              div
+              div(class="glyphicon glyphicon-play play")
+              div
       div(class='col-md-12 chat-footer')
         span(class="chat-input")
           span(class="source glyphicon glyphicon-picture")
